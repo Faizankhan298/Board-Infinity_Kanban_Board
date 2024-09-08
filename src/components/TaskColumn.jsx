@@ -8,6 +8,7 @@ const TaskColumn = ({
   onTaskUpdate,
   onTaskDelete,
   onTaskStatusChange,
+  onTaskSelect,
 }) => {
   const [, drop] = useDrop(() => ({
     accept: "TASK",
@@ -21,7 +22,7 @@ const TaskColumn = ({
           status === "TODO"
             ? "bg-purple-600"
             : status === "IN PROGRESS"
-            ? "bg-yellow-500 text-black"
+            ? "bg-yellow-500 !text-black"
             : "bg-green-500"
         }`}
       >
@@ -35,6 +36,7 @@ const TaskColumn = ({
             onUpdate={onTaskUpdate}
             onDelete={onTaskDelete}
             onStatusChange={onTaskStatusChange}
+            onSelect={onTaskSelect}
           />
         ))}
       </div>

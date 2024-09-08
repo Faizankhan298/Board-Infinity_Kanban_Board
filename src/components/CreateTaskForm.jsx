@@ -1,27 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, Textarea, Select } from "@chakra-ui/react";
 import { CalendarIcon, XIcon } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const CreateTaskForm = ({ onClose, onSave }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-  const [status, setStatus] = useState("TODO");
-  const [priority, setPriority] = useState("Low");
+const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
+  const [title, setTitle] = useState(task ? task.title : "");
+  const [description, setDescription] = useState(task ? task.description : "");
+  const [date, setDate] = useState(task ? new Date(task.date) : "");
+  const [status, setStatus] = useState(task ? task.status : "TODO");
+  const [priority, setPriority] = useState(task ? task.priority : "Low");
+
+  useEffect(() => {
+    if (task) {
+      setTitle(task.title);
+      setDescription(task.description);
+      setDate(new Date(task.date));
+      setStatus(task.status);
+      setPriority(task.priority);
+    }
+  }, [task]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTask = {
-      id: Date.now(),
+      id: task ? task.id : Date.now(),
       title,
       description,
       date: date ? date.toLocaleDateString() : "",
       status,
       priority,
     };
-    onSave(newTask);
+    if (task) {
+      onUpdate(newTask);
+    } else {
+      onSave(newTask);
+    }
     onClose();
   };
 
@@ -29,7 +43,9 @@ const CreateTaskForm = ({ onClose, onSave }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-4xl  p-6 bg-white rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">Create New Task</h2>
+          <h2 className="text-lg font-semibold">
+            {task ? "Edit Task" : "Create New Task"}
+          </h2>
           <XIcon
             className="w-5 h-5 text-gray-500 cursor-pointer"
             onClick={onClose}
@@ -139,7 +155,7 @@ const CreateTaskForm = ({ onClose, onSave }) => {
               type="submit"
               className="bg-purple-600 text-white hover:text-black border border-purple-600  hover:bg-white px-4 py-2 rounded-md"
             >
-              Create
+              {task ? "Update" : "Create"}
             </button>
           </div>
         </form>

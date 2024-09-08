@@ -1,9 +1,11 @@
 import React from "react";
 import { useDrag } from "react-dnd";
-import { useState} from "react";
-import { ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
+import { ChevronDownIcon, Calendar } from "lucide-react";
+import { IconButton} from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
-const TaskCard = ({ task, onUpdate, onDelete, onStatusChange }) => {
+const TaskCard = ({ task, onUpdate, onDelete, onStatusChange, onSelect }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -35,7 +37,9 @@ const TaskCard = ({ task, onUpdate, onDelete, onStatusChange }) => {
           >
             {task.priority}
           </span>
-          <h4 className="font-semibold mt-2">{task.title}</h4>
+          <h3 className="mt-2 text-2xl font-semibold text-gray-800">
+            {task.title}
+          </h3>
         </div>
         <ChevronDownIcon
           className={`w-5 h-5 transition-transform ${
@@ -46,7 +50,24 @@ const TaskCard = ({ task, onUpdate, onDelete, onStatusChange }) => {
       {isExpanded && (
         <div className="mt-2 text-sm text-gray-600">
           <p>{task.description}</p>
-          <p className="mt-2">Due: {task.date}</p>
+          <hr className="mt-2" />
+          <div className="flex items-center mt-3 text-gray-500 text-sm">
+            <Calendar className="mr-2" size={16} />
+            <span>{task.date}</span>
+          </div>
+
+          <div className="flex space-x-2 mt-2">
+            <IconButton
+              icon={<EditIcon />}
+              aria-label="Edit Task"
+              onClick={() => onSelect(task)}
+            />
+            <IconButton
+              icon={<DeleteIcon />}
+              aria-label="Delete Task"
+              onClick={() => onDelete(task.id)}
+            />
+          </div>
         </div>
       )}
     </div>
