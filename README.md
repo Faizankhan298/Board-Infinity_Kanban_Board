@@ -4,8 +4,9 @@
 
 🌟✨ A Kanban board is a visual tool for managing workflow by displaying tasks as cards moving through columns representing different stages, such as "To Do," "In Progress," and "Done." It helps teams track progress, limit work-in-progress, and identify bottlenecks. By focusing on continuous delivery and visualizing the work process, Kanban improves efficiency and productivity.✨🌟
 
+### Notion Page:  [https://political-ping-f97.notion.site/Frontend-Task-Kanban-Board-3c1f2f9baca545b2827b1139111eaa3c](https://political-ping-f97.notion.site/Frontend-Task-Kanban-Board-3c1f2f9baca545b2827b1139111eaa3c) 
 
-### Click  [https://board-infinity-kanban-board.vercel.app/](https://board-infinity-kanban-board.vercel.app/) to view in your browser. 🌐👀
+### Website Link: Click on  [https://board-infinity-kanban-board.vercel.app/](https://board-infinity-kanban-board.vercel.app/) to view in your browser. 🌐👀
 
 ### UI Reference
 [https://www.figma.com/design/LvIrJ2fcRNabf8UHMjBHJW/Front-End-Task?node-id=0-1&node-type=CANVAS&t=FsM3zcjq2IXdSHWn-0](https://www.figma.com/design/LvIrJ2fcRNabf8UHMjBHJW/Front-End-Task?node-id=0-1&node-type=CANVAS&t=FsM3zcjq2IXdSHWn-0)
