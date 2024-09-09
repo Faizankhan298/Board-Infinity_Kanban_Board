@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input, Textarea, Select } from "@chakra-ui/react";
-import { CalendarIcon, XIcon } from "lucide-react";
+import { CalendarIcon, XIcon, PlusCircle } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -8,8 +8,8 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
   const [title, setTitle] = useState(task ? task.title : "");
   const [description, setDescription] = useState(task ? task.description : "");
   const [date, setDate] = useState(task ? new Date(task.date) : "");
-  const [status, setStatus] = useState(task ? task.status : "TODO");
-  const [priority, setPriority] = useState(task ? task.priority : "Low");
+  const [status, setStatus] = useState(task ? task.status : "");
+  const [priority, setPriority] = useState(task ? task.priority : "");
 
   useEffect(() => {
     if (task) {
@@ -43,9 +43,17 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-4xl  p-6 bg-white rounded-lg shadow-lg">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">
-            {task ? "Edit Task" : "Create New Task"}
-          </h2>
+          <div className="flex ">
+            <PlusCircle
+              size={30}
+              color="white"
+              fill="#8B5CF6"
+              strokeWidth={1.5}
+            />
+            <h2 className="text-lg font-semibold mx-3">
+              {task ? "Edit Task" : "Create New Task"}
+            </h2>
+          </div>
           <XIcon
             className="w-5 h-5 text-gray-500 cursor-pointer"
             onClick={onClose}
@@ -57,7 +65,7 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
               htmlFor="title"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Title *
+              Title <span className="text-red-500">*</span>
             </label>
             <Input
               id="title"
@@ -88,7 +96,7 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
               htmlFor="date"
               className="block text-sm font-medium text-gray-700 mb-2"
             >
-              Select Date *
+              Select Date <span className="text-red-500">*</span>
             </label>
             <div className="mt-1 relative">
               <DatePicker
@@ -146,14 +154,14 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
           </div>
           <div className="flex justify-end space-x-2">
             <button
-              className="border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-black px-4 py-2 rounded-md"
+              className="border border-purple-600 text-purple-600 hover:bg-red-600 hover:text-white px-4 py-2 rounded-md"
               onClick={onClose}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-purple-600 text-white hover:text-black border border-purple-600  hover:bg-white px-4 py-2 rounded-md"
+              className="bg-purple-600 text-white hover:text-black border border-purple-600  hover:bg-green-600 px-4 py-2 rounded-md"
             >
               {task ? "Update" : "Create"}
             </button>
