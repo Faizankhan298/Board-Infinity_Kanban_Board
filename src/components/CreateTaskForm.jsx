@@ -98,16 +98,16 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
             >
               Select Date <span className="text-red-500">*</span>
             </label>
-            <div className="mt-1 relative">
+            <div className="flex items-center justify-between border border-gray-300 rounded-md px-3 py-2">
               <DatePicker
                 selected={date}
                 onChange={(date) => setDate(date)}
                 placeholderText="DD/MM/YY"
-                className="w-full border border-gray-300 rounded-md px-3 py-2 pr-10"
+                className="w-full outline-none"
                 required
               />
               <CalendarIcon
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 cursor-pointer"
+                className="ml-2 text-gray-400 w-5 h-5 cursor-pointer "
                 onClick={() =>
                   document
                     .querySelector(".react-datepicker__input-container input")
@@ -116,6 +116,7 @@ const CreateTaskForm = ({ onClose, onSave, task, onUpdate }) => {
               />
             </div>
           </div>
+
           <div>
             <label
               htmlFor="status"

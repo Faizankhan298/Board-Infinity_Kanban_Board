@@ -19,10 +19,12 @@ const TaskCard = ({ task, onUpdate, onDelete, onStatusChange, onSelect }) => {
   return (
     <div
       ref={drag}
-      className={`mb-4 last:mb-0 ${isDragging ? "opacity-50" : ""}`}
+      className={`mb-4 last:mb-0 ${
+        isDragging ? "opacity-50" : ""
+      } border border-neutral-300 rounded-xl p-4`}
     >
       <div
-        className="flex justify-between items-start cursor-pointer"
+        className="flex justify-between items-start cursor-pointer "
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div>
@@ -50,7 +52,7 @@ const TaskCard = ({ task, onUpdate, onDelete, onStatusChange, onSelect }) => {
       {isExpanded && (
         <div className="mt-2 text-sm text-gray-600">
           <p>{task.description}</p>
-          <hr className="mt-2" />
+          <hr className="mt-2 border-neutral-300" />
           <div className="flex items-center mt-3 text-gray-500 text-sm">
             <Calendar className="mr-2" size={16} />
             <span>{task.date}</span>
