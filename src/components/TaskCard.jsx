@@ -16,12 +16,27 @@ const TaskCard = ({ task, onUpdate, onDelete, onStatusChange, onSelect }) => {
     }),
   }));
 
+  const getStatusBorderColor = (status) => {
+    switch (status) {
+      case "TODO":
+        return "border-l-purple-600";
+      case "IN PROGRESS":
+        return "border-l-yellow-600";
+      case "COMPLETED":
+        return "border-l-green-600";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div
       ref={drag}
       className={`mb-4 last:mb-0 ${
         isDragging ? "opacity-50" : ""
-      } border border-neutral-300 rounded-xl p-4`}
+      } border border-neutral-300 rounded-xl p-4 border-l-4 ${getStatusBorderColor(
+        task.status
+      )}`}
     >
       <div
         className="flex justify-between items-start cursor-pointer "
